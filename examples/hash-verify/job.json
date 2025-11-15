@@ -1,0 +1,12 @@
+{
+  "name": "SHA256 Hash Verification Demo",
+  "description": "Deterministic workload - compute SHA256 hash of a large text file",
+  "docker_image": "alpine:latest",
+  "command": [
+    "sh",
+    "-c",
+    "echo 'DistributeAI - Decentralized Compute for the People' | sha256sum && date && hostname"
+  ],
+  "required_cpu": 1,
+  "required_memory": 1
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Image Processing with Python",
+  "description": "ML workload - generate a simple image pattern with fixed seed",
+  "docker_image": "python:3.9-slim",
+  "command": [
+    "python",
+    "-c",
+    "import hashlib; data = 'DistributeAI-Image-Process'; print(hashlib.sha256(data.encode()).hexdigest())"
+  ],
+  "required_cpu": 2,
+  "required_memory": 2
+}
