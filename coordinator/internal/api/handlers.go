@@ -19,6 +19,14 @@ func NewHandler(db *repository.Database) *Handler {
 	return &Handler{db: db}
 }
 
+// maxInt returns the larger of two integers
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 // Health check endpoint
 func (h *Handler) HealthCheck(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
@@ -45,8 +53,8 @@ func (h *Handler) SubmitJob(c *gin.Context) {
 		Command:        req.Command,
 		Environment:    req.Environment,
 		InputData:      req.InputData,
-		RequiredCPU:    max(req.RequiredCPU, 1),
-		RequiredMemory: max(req.RequiredMemory, 1),
+		RequiredCPU:    maxInt(req.RequiredCPU, 1),
+		RequiredMemory: maxInt(req.RequiredMemory, 1),
 		RequiredGPU:    req.RequiredGPU,
 		Redundancy:     3, // Default k-of-n: 3 nodes
 		Consensus:      2, // Need 2 to agree
@@ -337,11 +345,4 @@ func (h *Handler) GetStats(c *gin.Context) {
 			"failed":    failedJobs,
 		},
 	})
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
