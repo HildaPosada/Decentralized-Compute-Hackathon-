@@ -4,8 +4,8 @@ go 1.21
 
 require (
 	github.com/docker/docker v24.0.7+incompatible
+	github.com/docker/go-connections v0.4.0
 	github.com/sirupsen/logrus v1.9.3
-	golang.org/x/sys v0.18.0 // Pin to compatible version
 )
 
 require (
